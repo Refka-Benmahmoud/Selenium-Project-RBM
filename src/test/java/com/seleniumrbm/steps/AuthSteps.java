@@ -7,12 +7,15 @@ import com.seleniumrbm.pages.HomePage;
 import com.seleniumrbm.pages.SignupPage;
 import com.seleniumrbm.utils.TestData;
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.PendingException;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.jspecify.annotations.NonNull;
 
 import java.util.HashMap;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AuthSteps {
@@ -57,7 +60,7 @@ public class AuthSteps {
     }
 
     @When("I fill the account form with:")
-    public void fillAccountForm(DataTable table) {
+    public void fillAccountForm(@NonNull DataTable table) {
         data.account = new HashMap<>(table.asMaps().get(0));
         new SignupPage(ctx.driver()).fillAccountForm(data.account);
     }
@@ -103,4 +106,6 @@ public class AuthSteps {
     public void loginFormVisible() {
         assertTrue(new AuthPage(ctx.driver()).isLoginFormVisible(), "'Login to your account' form not visible");
     }
+
+
 }

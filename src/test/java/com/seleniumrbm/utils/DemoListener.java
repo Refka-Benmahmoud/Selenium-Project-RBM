@@ -8,7 +8,7 @@ import org.openqa.selenium.support.events.WebDriverListener;
 public class DemoListener implements WebDriverListener {
 
     // Durée de chaque pause en millisecondes (1000 = 1 seconde)
-    private static final long PAUSE_MS = 1000;
+    private static final long PAUSE_MS = 1;
 
     private final WebDriver driver;   // navigateur d'origine, utilisé pour encadrer les éléments
 
