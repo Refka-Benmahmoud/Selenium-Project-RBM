@@ -30,5 +30,10 @@ public class SignupPage extends SitePage {
 
     public void createAccount() { click(qa("create-account")); }
 
-    public void continueAfterCreation() { click(qa("continue-button")); }
+    public void continueAfterCreation() {
+        click(qa("continue-button"));
+        // an ad can hijack the click: we are already logged in, so go home if the header is missing
+        if (!isTextVisible("Logged in as")) {
+            open("/");
+        }}
 }

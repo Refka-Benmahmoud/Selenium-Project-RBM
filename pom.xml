@@ -13,7 +13,7 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <selenium.version>4.51.0</selenium.version>
-        <junit.version>5.11.0</junit.version>
+        <junit.version>5.13.4</junit.version>
         <allure.version>2.35.5</allure.version>
         <aspectj.version>1.9.26</aspectj.version>
         <maven.compiler.parameters>true</maven.compiler.parameters>

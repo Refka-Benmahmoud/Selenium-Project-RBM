@@ -64,7 +64,7 @@ public class CartSteps {
         cart.waitForRowCount(data.addedProducts.size());
         for (int i = 0; i < cart.rowCount(); i++) {
             assertTrue(data.addedProducts.contains(cart.productName(i)),
-                    "Unexpected product in the cart: " + cart.productName(i));
+                    "Cart shows '" + cart.productName(i) + "' but the added products are " + data.addedProducts);
         }
     }
 

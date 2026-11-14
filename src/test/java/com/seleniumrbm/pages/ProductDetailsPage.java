@@ -36,4 +36,7 @@ public class ProductDetailsPage extends SitePage {
         click(addToCartButton);
         waitForCartModal();
     }
+    public String category() {
+        return find(By.xpath("//div[@class='product-information']//p[contains(.,'Category:')]")).getText();
+    }
 }

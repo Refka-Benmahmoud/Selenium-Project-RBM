@@ -1,5 +1,6 @@
 package com.seleniumrbm.Context;
 
+import com.seleniumrbm.utils.ConfigReader;
 import com.seleniumrbm.utils.DemoListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -26,9 +27,14 @@ public class TestContext {
                     "credentials_enable_service", false,
                     "profile.password_manager_enabled", false,
                     "profile.password_manager_leak_detection", false));
-            driver = new ChromeDriver(options);
-            // Mode démo : chaque action est encadrée en rouge puis mise en pause (voir DemoListener)
-            driver = new EventFiringDecorator<WebDriver>(new DemoListener(driver)).decorate(driver);
+            WebDriver raw = new ChromeDriver(options);
+
+            // Demo mode: red outline + 1 s pause on every action (see DemoListener)
+            if (Boolean.parseBoolean(ConfigReader.get("demo.mode"))) {
+                driver = new EventFiringDecorator<WebDriver>(new DemoListener(raw)).decorate(raw);
+            } else {
+                driver = raw;
+            }
             driver.manage().window().maximize();
         }
         return driver;

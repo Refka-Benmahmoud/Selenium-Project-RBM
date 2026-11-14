@@ -116,4 +116,8 @@ public abstract class SitePage {
     public void viewCart() {
         click(By.xpath("//a[normalize-space()='View Cart']"));
     }
+    public void openUrl(String fullUrl) {
+        driver.get(fullUrl);
+        removeAds();
+    }
 }

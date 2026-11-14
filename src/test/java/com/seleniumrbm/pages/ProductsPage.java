@@ -56,4 +56,7 @@ public class ProductsPage extends SitePage {
         waitForCartModal();
         return name;
     }
+    public List<String> resultLinks() {
+        return findAll(firstViewProduct).stream().map(a -> a.getAttribute("href")).toList();
+    }
 }

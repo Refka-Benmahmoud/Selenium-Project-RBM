@@ -44,11 +44,18 @@ public class ProductSteps {
 
     @Then("every result should contain {string}")
     public void everyResultContains(String word) {
-        List<String> names = new ProductsPage(ctx.driver()).resultNames();
+        ProductsPage products = new ProductsPage(ctx.driver());
+        List<String> names = products.resultNames();
+        List<String> links = products.resultLinks();
         assertFalse(names.isEmpty(), "No result for " + word);
-        for (String name : names) {
-            assertTrue(name.toLowerCase().contains(word.toLowerCase()),
-                    "'" + name + "' does not contain '" + word + "'");
+        String w = word.toLowerCase();
+        for (int i = 0; i < names.size(); i++) {
+            if (names.get(i).toLowerCase().contains(w)) continue;
+            // the site also searches the category: check it on the details page
+            products.openUrl(links.get(i));
+            String category = new ProductDetailsPage(ctx.driver()).category();
+            assertTrue(category.toLowerCase().contains(w),
+                    "'" + names.get(i) + "' has neither the name nor the category (" + category + ") containing '" + word + "'");
         }
     }
 
